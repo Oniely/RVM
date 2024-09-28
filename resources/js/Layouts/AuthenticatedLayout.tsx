@@ -10,24 +10,25 @@ export default function AuthenticatedLayout({
   children,
 }: PropsWithChildren<{ header?: string | ReactNode }>) {
   return (
-    <div className="flex flex-row min-h-screen max-md:flex-col">
+    <div className="flex flex-row min-h-screen max-md:flex-col max-container">
       <Sidebar />
       <MobileNavbar />
 
-      <main className="flex flex-col flex-1 min-h-screen px-4 pb-10 sm:px-6 pt-5 md:pt-[4.5rem] md:px-14">
-        <header className="flexBetween">
+      <main className="flex flex-col flex-1 min-h-screen px-4 pt-5 pb-10 sm:px-6 md:pt-12 md:px-14">
+        <header className="pt-6 flexBetween md:border-t md:border-gray-200">
           <h2 className="text-4xl font-semibold leading-tight text-gray-800">
             {header}
           </h2>
-          <div className="flexCenter gap-4">
-            <Link href='#' className="w-5 h-5 max-md:hidden">
-              <img src="/images/notification.svg" alt="notification" className='w-full h-full object-cover' />
+          <div className="gap-4 flexCenter">
+            <Link href='#' className="w-6 h-6 max-md:hidden">
+              <img src="/images/notification.svg" alt="notification" className='object-cover w-full h-full' />
             </Link>
-            <div className="w-5 h-5 max-md:hidden">
+            <div className="w-6 h-6 max-md:hidden">
               <SettingDropdown />
             </div>
           </div>
         </header>
+
         <div className='py-12'>{children}</div>
       </main>
     </div>

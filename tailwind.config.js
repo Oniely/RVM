@@ -20,8 +20,7 @@ export default {
                 secondary: "#f1f1f1",
                 accent: "#a6a6a6",
 
-                text: "#000000",
-                'text-accent': "#4e4e4e",
+                't-light': "#4e4e4e",
             }
         },
     },
