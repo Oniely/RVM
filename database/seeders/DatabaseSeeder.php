@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Rice::factory()->count(3)->create();
-        Transaction::factory()->count(10)->create();
+        Transaction::factory()->count(20)->create();
     }
 }

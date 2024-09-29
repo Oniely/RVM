@@ -1,8 +1,12 @@
+import Paginator from '@/Components/Paginator';
 import { Tab, Tabs } from '@/Components/Tabs';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import { formatTime } from '@/lib/format';
 import { Head } from '@inertiajs/react';
 
-export default function Index() {
+export default function Index({ transactions }: any) {
+  console.log(transactions);
+
   return (
     <AuthenticatedLayout header="Transactions">
       <Head title="Transactions" />
@@ -10,7 +14,57 @@ export default function Index() {
       <div className="-my-2">
         <Tabs>
           <Tab label="HISTORY">
-            <p>This is the content of History.</p>
+            <div className="relative overflow-x-auto">
+              <table className="w-full text-sm text-left">
+                <thead className="text-xs text-gray-900 uppercase">
+                  <tr className="border-b">
+                    <th scope="col" className="px-6 py-3">
+                      Date
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Time
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Payment
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Stock
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Price
+                    </th>
+                    <th scope="col" className="px-6 py-3" />
+                  </tr>
+                </thead>
+                <tbody>
+                  {transactions.data.map((transaction: any) => (
+                    <tr
+                      className="border-b hover:bg-green-100 text-t-light font-medium"
+                      key={transaction.id}
+                    >
+                      <td className="px-6 py-3">
+                        {transaction.created_at.split(' ')[0]}
+                      </td>
+                      <td className="px-6 py-3">
+                        {formatTime(transaction.created_at.split(' ')[1])}
+                      </td>
+                      <td className="px-6 py-3">
+                        {transaction.payment_method}
+                      </td>
+                      <td className="px-6 py-3">{transaction.rice.variety}</td>
+                      <td className="px-6 py-3">{transaction.price}</td>
+                      <td className="px-6 py-3">...</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <Paginator
+                prev={transactions.links.prev}
+                next={transactions.links.next}
+                current={transactions.meta.current_page}
+                lastPage={transactions.meta.last_page}
+              />
+            </div>
           </Tab>
           <Tab label="Tab 2">
             <p>This is the content of Tab 2.</p>

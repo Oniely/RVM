@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('rice', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('variety');
             $table->double('price');
             $table->timestamps();
         });

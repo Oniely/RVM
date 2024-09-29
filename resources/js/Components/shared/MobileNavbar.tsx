@@ -58,11 +58,12 @@ export default function MobileNavbar() {
         }
       >
         <div className="pt-2 pb-3 space-y-1">
-          {NAV_LINKS.map((link) => {
+          {NAV_LINKS.map((link, index) => {
             return (
               <ResponsiveNavLink
                 href={route(link.route)}
                 active={route().current(link.route)}
+                key={index}
               >
                 {link.name}
               </ResponsiveNavLink>

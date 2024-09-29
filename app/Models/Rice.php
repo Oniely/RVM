@@ -11,6 +11,11 @@ class Rice extends Model
 
     protected $fillable = [
         'name',
+        'variety',
         'price'
     ];
+
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
+    }
 }

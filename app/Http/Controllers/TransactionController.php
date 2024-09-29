@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TransactionResource;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,13 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return inertia('Transactions/Index', []);
+        $query = Transaction::query();
+
+        $transactions = $query->with('rice')->paginate(10);
+
+        return inertia('Transactions/Index', [
+            'transactions' => TransactionResource::collection($transactions),
+        ]);
     }
 
     /**
