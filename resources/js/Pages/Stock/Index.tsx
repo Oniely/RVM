@@ -1,4 +1,4 @@
-import StockSlot from '@/Components/dashboard/StockSlot';
+import StockSlot from '@/Components/stock_inventory/StockSlot';
 import { Tab, Tabs } from '@/Components/Tabs';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';

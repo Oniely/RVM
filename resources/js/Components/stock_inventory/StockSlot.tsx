@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PrimaryButton from '../PrimaryButton';
 import SecondaryButton from '../SecondaryButton';
 import Modal from '../Modal';
+import UpdateForm from './UpdateForm';
 
 interface Props {
   name: string;
@@ -75,9 +76,7 @@ export default function StockSlot({
 
       <Modal show={modalOpen} onClose={handleCloseModal} maxWidth='lg'>
         {modalType === 'update' && (
-          <div>
-            <h2>Update Stock</h2>
-          </div>
+            <UpdateForm />
         )}
 
         {modalType === 'release' && (
