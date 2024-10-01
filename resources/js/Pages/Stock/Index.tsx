@@ -8,10 +8,29 @@ export default function Index() {
     <AuthenticatedLayout header="Stock Inventory">
       <Head title="Stock Inventory" />
 
-      <div className='flex items-center justify-around flex-wrap max-md:flex-col gap-6'>
-        <StockSlot name='Slot 1' variety='RC1' stock={20} isAvailable />
-        <StockSlot name='Slot 2' variety='RC1' stock={20} isAvailable />
-        <StockSlot name='Slot 3' variety='RC1' stock={20} isAvailable />
+      <div className="flex items-center justify-around flex-wrap max-md:flex-col gap-6">
+        <StockSlot
+          name="Slot 1"
+          variety="RC1"
+          stock={20}
+          onConfirm={() => console.log('CONFIRMED')}
+          isAvailable
+        />
+        <StockSlot
+          name="Slot 2"
+          variety="RC1"
+          stock={20}
+          onConfirm={() => console.log('CONFIRMED')}
+          isAvailable
+        />
+        <StockSlot
+          name="Slot 3"
+          variety="RC1"
+          stock={20}
+          onConfirm={() => console.log('CONFIRMED')}
+          onCancel={() => console.log('CANCELLED')}
+          isAvailable
+        />
       </div>
 
       <div className="mt-14">
@@ -37,15 +56,9 @@ export default function Index() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    className="border-b hover:bg-green-100 text-t-light font-medium"
-                  >
-                    <td className="px-6 py-3">
-                      09-03-24
-                    </td>
-                    <td className="px-6 py-3">
-                      12:00PM
-                    </td>
+                  <tr className="border-b hover:bg-green-100 text-t-light font-medium">
+                    <td className="px-6 py-3">09-03-24</td>
+                    <td className="px-6 py-3">12:00PM</td>
                     <td className="px-6 py-3">RESTOCK</td>
                     <td className="px-6 py-3">SLOT 1</td>
                     <td className="px-6 py-3">...</td>

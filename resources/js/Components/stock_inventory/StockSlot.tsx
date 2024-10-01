@@ -3,14 +3,14 @@ import PrimaryButton from '../PrimaryButton';
 import SecondaryButton from '../SecondaryButton';
 import Modal from '../Modal';
 import UpdateForm from './UpdateForm';
+import ConfirmRelease from './ConfirmRelease';
 
 interface Props {
   name: string;
   isAvailable?: boolean;
   variety: string;
   stock: number;
-  onUpdate?: () => void;
-  onRelease?: () => void;
+  onConfirm: () => void;
 }
 
 export default function StockSlot({
@@ -18,8 +18,7 @@ export default function StockSlot({
   isAvailable = false,
   variety,
   stock,
-  onUpdate,
-  onRelease,
+  onConfirm,
 }: Props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState<'update' | 'release' | null>(null);
@@ -76,13 +75,11 @@ export default function StockSlot({
 
       <Modal show={modalOpen} onClose={handleCloseModal} maxWidth='lg'>
         {modalType === 'update' && (
-            <UpdateForm />
+            <UpdateForm onConfirm={onConfirm} onCancel={handleCloseModal} />
         )}
 
         {modalType === 'release' && (
-          <div>
-            <h2>Release Stock</h2>
-          </div>
+          <ConfirmRelease onConfirm={onConfirm} onCancel={handleCloseModal} />
         )}
       </Modal>
     </>
