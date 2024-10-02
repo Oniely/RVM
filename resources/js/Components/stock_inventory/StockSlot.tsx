@@ -6,18 +6,19 @@ import UpdateForm from './UpdateForm';
 import ConfirmRelease from './ConfirmRelease';
 
 interface Props {
-  name: string;
+  stock: {
+    id: number;
+    name: string;
+    variety: string;
+    current_stock: number;
+  };
   isAvailable?: boolean;
-  variety: string;
-  stock: number;
   onConfirm: () => void;
 }
 
 export default function StockSlot({
-  name,
-  isAvailable = false,
-  variety,
   stock,
+  isAvailable = false,
   onConfirm,
 }: Props) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -37,7 +38,9 @@ export default function StockSlot({
     <>
       <div className="flex flex-col items-center w-60 gap-6 py-4 px-5 border-2 rounded-xl border-primary">
         <div className="text-center">
-          <h3 className="text-xl font-semibold leading-4 uppercase">{name}</h3>
+          <h3 className="text-xl font-semibold leading-4 uppercase">
+            {`Slot ${stock.id}`}
+          </h3>
           <span
             className={`text-sm font-medium ${
               isAvailable ? 'text-primary' : 'text-[#ff2b2b]'
@@ -49,13 +52,13 @@ export default function StockSlot({
         <div className="space-y-3">
           <div className="text-center">
             <h4 className="text-lg font-semibold leading-4 text-primary">
-              {variety}
+              {stock.variety}
             </h4>
             <span className="text-sm text-t-light">Variety</span>
           </div>
           <div className="text-center">
             <h4 className="text-lg font-semibold leading-4 text-primary">
-              {stock} kg
+              {stock.current_stock} kg
             </h4>
             <span className="text-sm text-t-light">Current Stocks</span>
           </div>

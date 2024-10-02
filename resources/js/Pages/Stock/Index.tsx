@@ -13,9 +13,7 @@ export default function Index({ stocks, histories }: any) {
         {stocks.data.map((stock: any) => (
           <StockSlot
             key={stock.id}
-            name={`Slot ${stock.id}`}
-            variety={stock.variety}
-            stock={stock.current_stock}
+            stock={stock}
             onConfirm={() => console.log('CONFIRMED')}
             isAvailable
           />
