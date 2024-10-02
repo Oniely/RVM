@@ -1,7 +1,7 @@
 import Paginator from '@/Components/Paginator';
 import { Tab, Tabs } from '@/Components/Tabs';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { formatTime } from '@/lib/format';
+import { formatTime } from '@/lib/utils';
 import { Head } from '@inertiajs/react';
 
 export default function Index({ transactions }: any) {

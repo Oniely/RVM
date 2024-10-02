@@ -18,6 +18,8 @@ class StockResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'variety' => $this->variety,
+            'full_stock' => $this->full_stock,
+            'current_stock' => $this->current_stock,
             'price' => $this->price,
             'created_at' => $this->created_at->format('m-d-y H:i'),
             'updated_at' => $this->updated_at->format('m-d-y H:i'),

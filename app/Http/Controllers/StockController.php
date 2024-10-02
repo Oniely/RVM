@@ -15,9 +15,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $query = Rice::query();
-
-        $stocks = $query->paginate(10);
+        $stocks = Rice::all();
         $history = History::query()->paginate(10);
 
         return inertia('Stock/Index', [

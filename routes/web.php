@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TransactionController;
+use App\Models\Rice;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -10,7 +11,13 @@ use Inertia\Inertia;
 Route::redirect('/', '/dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
+    Route::get('/dashboard', function () {
+        $stocks = Rice::all();
+
+        return Inertia::render('Dashboard', [
+            'stocks' => $stocks
+        ]);
+    })->name('dashboard');
 
     Route::resource('/stock', StockController::class);
     Route::resource('/transactions', TransactionController::class);

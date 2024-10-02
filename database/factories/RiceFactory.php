@@ -19,6 +19,8 @@ class RiceFactory extends Factory
         return [
             'name' => $this->faker->name,
             'variety' => "RC1",
+            'full_stock' => 10,
+            'current_stock' => $this->faker->numberBetween(5, 10),
             'price' => $this->faker->numberBetween(50, 100)
         ];
     }

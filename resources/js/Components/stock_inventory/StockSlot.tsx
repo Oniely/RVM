@@ -61,11 +61,14 @@ export default function StockSlot({
           </div>
         </div>
         <div className="flex flex-col items-center gap-2 w-full">
-          <PrimaryButton className="w-full py-3" onClick={() => handleOpenModal('update')}>
+          <PrimaryButton
+            className="w-full py-3"
+            onClick={() => handleOpenModal('update')}
+          >
             Update
           </PrimaryButton>
           <SecondaryButton
-            className="w-full bg-t-light text-[#ff2b2b] py-3"
+            className="w-full bg-t-light text-[#ff2b2b] hover:bg-t-light/90 active:bg-t-light py-3"
             onClick={() => handleOpenModal('release')}
           >
             Release
@@ -73,9 +76,9 @@ export default function StockSlot({
         </div>
       </div>
 
-      <Modal show={modalOpen} onClose={handleCloseModal} maxWidth='lg'>
+      <Modal show={modalOpen} onClose={handleCloseModal} maxWidth="lg">
         {modalType === 'update' && (
-            <UpdateForm onConfirm={onConfirm} onCancel={handleCloseModal} />
+          <UpdateForm onConfirm={onConfirm} onCancel={handleCloseModal} />
         )}
 
         {modalType === 'release' && (

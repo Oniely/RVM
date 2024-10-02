@@ -1,7 +1,7 @@
 import StockSlot from '@/Components/stock_inventory/StockSlot';
 import { Tab, Tabs } from '@/Components/Tabs';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { formatTime } from '@/lib/format';
+import { formatTime } from '@/lib/utils';
 import { Head } from '@inertiajs/react';
 
 export default function Index({ stocks, histories }: any) {
@@ -10,27 +10,16 @@ export default function Index({ stocks, histories }: any) {
       <Head title="Stock Inventory" />
 
       <div className="flex items-center justify-around flex-wrap max-md:flex-col gap-6">
-        <StockSlot
-          name="Slot 1"
-          variety="RC1"
-          stock={20}
-          onConfirm={() => console.log('CONFIRMED')}
-          isAvailable
-        />
-        <StockSlot
-          name="Slot 2"
-          variety="RC1"
-          stock={20}
-          onConfirm={() => console.log('CONFIRMED')}
-          isAvailable
-        />
-        <StockSlot
-          name="Slot 3"
-          variety="RC1"
-          stock={20}
-          onConfirm={() => console.log('CONFIRMED')}
-          isAvailable
-        />
+        {stocks.data.map((stock: any) => (
+          <StockSlot
+            key={stock.id}
+            name={`Slot ${stock.id}`}
+            variety={stock.variety}
+            stock={stock.current_stock}
+            onConfirm={() => console.log('CONFIRMED')}
+            isAvailable
+          />
+        ))}
       </div>
 
       <div className="mt-14">
@@ -57,7 +46,10 @@ export default function Index({ stocks, histories }: any) {
                 </thead>
                 <tbody>
                   {histories.data.map((history: any) => (
-                    <tr className="border-b hover:bg-green-100 text-t-light font-medium">
+                    <tr
+                      className="border-b hover:bg-green-100 text-t-light font-medium"
+                      key={history.id}
+                    >
                       <td className="px-6 py-3">
                         {history.created_at.split(' ')[0]}
                       </td>
