@@ -5,8 +5,6 @@ import { formatTime } from '@/lib/format';
 import { Head } from '@inertiajs/react';
 
 export default function Index({ transactions }: any) {
-  console.log(transactions);
-
   return (
     <AuthenticatedLayout header="Transactions">
       <Head title="Transactions" />
@@ -51,9 +49,11 @@ export default function Index({ transactions }: any) {
                       <td className="px-6 py-3">
                         {transaction.payment_method}
                       </td>
-                      <td className="px-6 py-3">{transaction.rice.variety}</td>
+                      <td className="px-6 py-3">{transaction.rice_variety}</td>
                       <td className="px-6 py-3">{transaction.price}</td>
-                      <td className="px-6 py-3">...</td>
+                      <td className="px-6 py-3">
+                        <button>...</button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\History;
 use App\Models\Rice;
 use App\Models\Transaction;
 use App\Models\User;
@@ -20,10 +21,18 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'password'=> bcrypt('admin'),
+            'password' => bcrypt('admin'),
         ]);
 
-        Rice::factory()->count(3)->create();
-        Transaction::factory()->count(20)->create();
+        // create 3 new rice stock
+        $rices = Rice::factory()->count(3)->create();
+
+        foreach ($rices as $rice) {
+            // for each rice stock add a transaction related to each rice
+            Transaction::factory()->count(5)->forRice($rice)->create();
+            
+            // for each rice stock add a history related to each rice
+            History::factory()->count(5)->forRice($rice)->create();
+        }
     }
 }

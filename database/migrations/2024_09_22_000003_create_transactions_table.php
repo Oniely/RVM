@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,8 +12,10 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('rice_id')->constrained('rice');
-            $table->string('payment_method');
+            $table->foreignId('rice_id')->nullable()->constrained('rice')->onDelete('SET NULL')->onUpdate('CASCADE');
+            $table->string('rice_name');
+            $table->string('rice_variety');
+            $table->enum('payment_method', ['GCASH', 'CASH']);
             $table->double('price');
             $table->timestamps();
         });

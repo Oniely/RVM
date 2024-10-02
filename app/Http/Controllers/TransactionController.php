@@ -15,7 +15,7 @@ class TransactionController extends Controller
     {
         $query = Transaction::query();
 
-        $transactions = $query->with('rice')->paginate(10);
+        $transactions = $query->paginate(10);
 
         return inertia('Transactions/Index', [
             'transactions' => TransactionResource::collection($transactions),

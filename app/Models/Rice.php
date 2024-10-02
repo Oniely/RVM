@@ -12,10 +12,17 @@ class Rice extends Model
     protected $fillable = [
         'name',
         'variety',
-        'price'
+        'price',
+        'recent_activity'
     ];
 
-    public function transactions() {
+    public function transactions()
+    {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function histories()
+    {
+        return $this->hasMany(History::class);
     }
 }

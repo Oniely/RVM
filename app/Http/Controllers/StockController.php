@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\HistoryResource;
+use App\Http\Resources\StockResource;
+use App\Models\History;
 use App\Models\Rice;
 use Illuminate\Http\Request;
 
@@ -12,7 +15,15 @@ class StockController extends Controller
      */
     public function index()
     {
-        return inertia('Stock/Index', []);
+        $query = Rice::query();
+
+        $stocks = $query->paginate(10);
+        $history = History::query()->paginate(10);
+
+        return inertia('Stock/Index', [
+            'stocks' => StockResource::collection($stocks),
+            'histories' => HistoryResource::collection($history)
+        ]);
     }
 
     /**

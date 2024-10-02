@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Rice;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Transaction>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\History>
  */
-class TransactionFactory extends Factory
+class HistoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,8 +20,7 @@ class TransactionFactory extends Factory
             "rice_id" => null,
             'rice_name' => null,
             'rice_variety' => null,
-            "payment_method" => $this->faker->randomElement(['GCASH', 'CASH']),
-            'price' => null
+            "recent_activity" => $this->faker->randomElement(['RESTOCKED', 'RELEASED']),
         ];
     }
 
@@ -32,7 +30,6 @@ class TransactionFactory extends Factory
                 'rice_id' => $rice->id,
                 'rice_name' => $rice->name,
                 'rice_variety' => $rice->variety,
-                'price' => $rice->price
             ];
         });
     }

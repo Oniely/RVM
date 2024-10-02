@@ -1,9 +1,10 @@
 import StockSlot from '@/Components/stock_inventory/StockSlot';
 import { Tab, Tabs } from '@/Components/Tabs';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import { formatTime } from '@/lib/format';
 import { Head } from '@inertiajs/react';
 
-export default function Index() {
+export default function Index({ stocks, histories }: any) {
   return (
     <AuthenticatedLayout header="Stock Inventory">
       <Head title="Stock Inventory" />
@@ -28,7 +29,6 @@ export default function Index() {
           variety="RC1"
           stock={20}
           onConfirm={() => console.log('CONFIRMED')}
-          onCancel={() => console.log('CANCELLED')}
           isAvailable
         />
       </div>
@@ -56,13 +56,21 @@ export default function Index() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b hover:bg-green-100 text-t-light font-medium">
-                    <td className="px-6 py-3">09-03-24</td>
-                    <td className="px-6 py-3">12:00PM</td>
-                    <td className="px-6 py-3">RESTOCK</td>
-                    <td className="px-6 py-3">SLOT 1</td>
-                    <td className="px-6 py-3">...</td>
-                  </tr>
+                  {histories.data.map((history: any) => (
+                    <tr className="border-b hover:bg-green-100 text-t-light font-medium">
+                      <td className="px-6 py-3">
+                        {history.created_at.split(' ')[0]}
+                      </td>
+                      <td className="px-6 py-3">
+                        {formatTime(history.created_at.split(' ')[1])}
+                      </td>
+                      <td className="px-6 py-3">{history.recent_activity}</td>
+                      <td className="px-6 py-3">{history.rice_variety}</td>
+                      <td className="px-6 py-3">
+                        <button>...</button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

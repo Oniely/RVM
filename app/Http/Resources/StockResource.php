@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TransactionResource extends JsonResource
+class StockResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,8 @@ class TransactionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'rice' => new StockResource($this->whenLoaded('rice')),
-            'rice_name' => $this->rice_name,
-            'rice_variety' => $this->rice_variety,
-            'payment_method' => $this->payment_method,
+            'name' => $this->name,
+            'variety' => $this->variety,
             'price' => $this->price,
             'created_at' => $this->created_at->format('m-d-y H:i'),
             'updated_at' => $this->updated_at->format('m-d-y H:i'),
