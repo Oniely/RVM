@@ -6,13 +6,15 @@ import PrimaryButton from '../PrimaryButton';
 import TextInput from '../TextInput';
 import { FormEventHandler } from 'react';
 import { Transition } from '@headlessui/react';
+import { Rice } from '@/types';
 
 interface Props {
+  stock: Rice;
   onConfirm: () => void;
   onCancel: () => void;
 }
 
-export default function ConfirmRelease({ onConfirm, onCancel }: Props) {
+export default function ConfirmRelease({ stock, onConfirm, onCancel }: Props) {
   const { data, setData, patch, errors, processing, recentlySuccessful } =
     useForm({
       release: false,
@@ -22,7 +24,7 @@ export default function ConfirmRelease({ onConfirm, onCancel }: Props) {
     e.preventDefault();
 
     if (data.release) {
-      console.log("TRUE")
+      console.log('TRUE');
     }
   };
 
@@ -38,7 +40,7 @@ export default function ConfirmRelease({ onConfirm, onCancel }: Props) {
         </h2>
       </div>
 
-      <div >
+      <div>
         <p className="text-accent text-lg text-center font-medium">
           Are you sure you want to dispense the remaining rice?
         </p>
@@ -50,7 +52,7 @@ export default function ConfirmRelease({ onConfirm, onCancel }: Props) {
           disabled={processing}
           onClick={() => {
             setData('release', true);
-            onConfirm()
+            onConfirm();
           }}
         >
           Confirm

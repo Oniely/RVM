@@ -30,9 +30,9 @@ class DatabaseSeeder extends Seeder
         foreach ($rices as $rice) {
             // for each rice stock add a transaction related to each rice
             Transaction::factory()->count(5)->forRice($rice)->create();
-            
+
             // for each rice stock add a history related to each rice
-            History::factory()->count(5)->forRice($rice)->create();
+            History::factory()->count(1)->forRice($rice)->create();
         }
     }
 }

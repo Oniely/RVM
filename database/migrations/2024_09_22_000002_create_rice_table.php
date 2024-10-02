@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('variety');
-            $table->double('full_stock');
+            $table->double('full_stock')->default(10);
             $table->double('current_stock');
             $table->double('price');
             $table->timestamps();

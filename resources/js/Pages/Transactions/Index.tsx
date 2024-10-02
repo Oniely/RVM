@@ -2,9 +2,14 @@ import Paginator from '@/Components/Paginator';
 import { Tab, Tabs } from '@/Components/Tabs';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { formatTime } from '@/lib/utils';
+import { Transaction } from '@/types';
 import { Head } from '@inertiajs/react';
 
-export default function Index({ transactions }: any) {
+interface Props {
+  transactions: { data: Transaction[]; links: any; meta: any };
+}
+
+export default function Index({ transactions }: Props) {
   return (
     <AuthenticatedLayout header="Transactions">
       <Head title="Transactions" />

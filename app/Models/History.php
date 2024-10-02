@@ -10,6 +10,7 @@ class History extends Model
     use HasFactory;
 
     protected $fillable = [
+        'rice_id',
         'rice_name',
         'rice_variety',
         'recent_activity',

@@ -1,21 +1,16 @@
+import { getPercentage } from '@/lib/utils';
+import { Rice } from '@/types';
+
 interface Props {
-  stockPercentage: number;
-  slotNumber: number;
-  status: 'Available' | 'Not available';
-  variety: string;
-  stock: number;
+  stock: Rice;
 }
 
-export default function Slot({
-  stockPercentage,
-  slotNumber,
-  status,
-  variety,
-  stock,
-}: Props) {
+export default function Slot({ stock }: Props) {
   const green = '#1c9058';
   const yellow = '#ffbd59';
   const red = '#ff2b2b';
+
+  const stockPercentage = getPercentage(stock.current_stock);
 
   const level =
     stockPercentage >= 65 ? 'HIGH' : stockPercentage <= 30 ? 'LOW' : 'MEDIUM';
@@ -36,23 +31,23 @@ export default function Slot({
       </div>
 
       <div className="">
-        <h3 className="text-2xl font-medium">Slot {slotNumber}</h3>
+        <h3 className="text-2xl font-medium">Slot {stock.id}</h3>
         <p className="font-light text-t-light mt-1">
           STATUS:{' '}
           <span className="font-medium" style={{ color: green }}>
-            {status}
+            {stock.current_stock > 0 ? 'Available' : 'Not available'}
           </span>
         </p>
         <p className="font-light text-t-light">
           VARIETY:{' '}
           <span className="font-medium" style={{ color: green }}>
-            {variety}
+            {stock.variety}
           </span>
         </p>
         <p className="font-light text-t-light">
           STOCKS:{' '}
           <span className="font-medium" style={{ color: green }}>
-            {`${stock} kg`}
+            {`${stock.current_stock} kg`}
           </span>
         </p>
         <p className="font-light text-t-light mt-1">

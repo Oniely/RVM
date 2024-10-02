@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react';
+
 interface Props {
   prev: string | null;
   next: string | null;
@@ -6,37 +8,31 @@ interface Props {
 }
 
 export default function Paginator({ prev, next, current, lastPage }: Props) {
-  const handlePageChange = (url: string | null) => {
-    if (url) {
-      window.location.href = url;
-    }
-  };
-
   return (
     <div className="flex items-center justify-between mt-4">
-      <button
-        onClick={() => handlePageChange(prev)}
+      <Link
+        href={prev!}
         disabled={!prev}
         className={`px-4 py-2 text-white bg-primary/90 rounded-lg ${
           !prev ? 'opacity-50 cursor-not-allowed' : 'hover:bg-primary'
         }`}
+        preserveScroll
       >
         &laquo; Previous
-      </button>
-
+      </Link>
       <span className="text-sm text-gray-700">
         Page {current} of {lastPage}
       </span>
-
-      <button
-        onClick={() => handlePageChange(next)}
+      <Link
+        href={next!}
         disabled={!next}
         className={`px-4 py-2 text-white bg-primary/90 rounded-lg ${
           !next ? 'opacity-50 cursor-not-allowed' : 'hover:bg-primary'
         }`}
+        preserveScroll
       >
         Next &raquo;
-      </button>
+      </Link>
     </div>
   );
 }

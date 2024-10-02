@@ -12,8 +12,9 @@ class Rice extends Model
     protected $fillable = [
         'name',
         'variety',
+        'full_stock',
+        'current_stock',
         'price',
-        'recent_activity'
     ];
 
     public function transactions()

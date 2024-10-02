@@ -19,8 +19,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ]);
     })->name('dashboard');
 
-    Route::resource('/stock', StockController::class);
-    Route::resource('/transactions', TransactionController::class);
+    Route::resource('stock', StockController::class);
+    Route::resource('transactions', TransactionController::class);
 });
 
 Route::middleware('auth')->group(function () {

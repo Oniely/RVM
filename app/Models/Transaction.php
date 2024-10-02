@@ -11,6 +11,7 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
+        'rice_id',
         'rice_name',
         'rice_variety',
         'payment_method',

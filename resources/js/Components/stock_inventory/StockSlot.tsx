@@ -4,23 +4,14 @@ import SecondaryButton from '../SecondaryButton';
 import Modal from '../Modal';
 import UpdateForm from './UpdateForm';
 import ConfirmRelease from './ConfirmRelease';
+import { Rice } from '@/types';
 
 interface Props {
-  stock: {
-    id: number;
-    name: string;
-    variety: string;
-    current_stock: number;
-  };
-  isAvailable?: boolean;
+  stock: Rice;
   onConfirm: () => void;
 }
 
-export default function StockSlot({
-  stock,
-  isAvailable = false,
-  onConfirm,
-}: Props) {
+export default function StockSlot({ stock, onConfirm }: Props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState<'update' | 'release' | null>(null);
 
@@ -43,10 +34,10 @@ export default function StockSlot({
           </h3>
           <span
             className={`text-sm font-medium ${
-              isAvailable ? 'text-primary' : 'text-[#ff2b2b]'
+              stock.current_stock > 0 ? 'text-primary' : 'text-[#ff2b2b]'
             }`}
           >
-            {isAvailable ? 'Available' : 'Not available'}
+            {stock.current_stock > 0 ? 'Available' : 'Not available'}
           </span>
         </div>
         <div className="space-y-3">
@@ -81,11 +72,15 @@ export default function StockSlot({
 
       <Modal show={modalOpen} onClose={handleCloseModal} maxWidth="lg">
         {modalType === 'update' && (
-          <UpdateForm onConfirm={onConfirm} onCancel={handleCloseModal} />
+          <UpdateForm stock={stock} onCancel={handleCloseModal} />
         )}
 
         {modalType === 'release' && (
-          <ConfirmRelease onConfirm={onConfirm} onCancel={handleCloseModal} />
+          <ConfirmRelease
+            stock={stock}
+            onConfirm={onConfirm}
+            onCancel={handleCloseModal}
+          />
         )}
       </Modal>
     </>
