@@ -41,9 +41,13 @@ class TransactionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transaction $transaction)
+    public function show($id)
     {
-        return inertia('Transactions/Show', []);
+        $transaction = Transaction::findOrFail($id);
+
+        return inertia('Transactions/Show', [
+            'transaction' => new TransactionResource($transaction)
+        ]);
     }
 
     /**
