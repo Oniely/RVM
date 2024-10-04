@@ -1,31 +1,28 @@
-import { useForm } from '@inertiajs/react';
 import DangerButton from '../DangerButton';
-import InputError from '../InputError';
-import InputLabel from '../InputLabel';
 import PrimaryButton from '../PrimaryButton';
-import TextInput from '../TextInput';
 import { FormEventHandler } from 'react';
-import { Transition } from '@headlessui/react';
 import { Rice } from '@/types';
+import { useForm } from '@inertiajs/react';
 
 interface Props {
   stock: Rice;
-  onConfirm: () => void;
   onCancel: () => void;
 }
 
-export default function ConfirmRelease({ stock, onConfirm, onCancel }: Props) {
-  const { data, setData, patch, errors, processing, recentlySuccessful } =
-    useForm({
-      release: false,
-    });
+export default function ConfirmRelease({ stock, onCancel }: Props) {
+  const { patch, processing } = useForm();
 
   const submit: FormEventHandler = (e) => {
     e.preventDefault();
 
-    if (data.release) {
-      console.log('TRUE');
-    }
+    patch(route('stock.release', stock.id), {
+      onSuccess: () => {
+        onCancel();
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
   };
 
   return (
@@ -47,30 +44,18 @@ export default function ConfirmRelease({ stock, onConfirm, onCancel }: Props) {
       </div>
 
       <div className="w-full flex items-center gap-6 mt-8">
-        <PrimaryButton
-          className="w-full py-3"
-          disabled={processing}
-          onClick={() => {
-            setData('release', true);
-            onConfirm();
-          }}
-        >
+        <PrimaryButton className="w-full py-3" disabled={processing}>
           Confirm
         </PrimaryButton>
-        <DangerButton type="button" className="w-full py-3" onClick={onCancel}>
+        <DangerButton
+          type="button"
+          className="w-full py-3"
+          disabled={processing}
+          onClick={onCancel}
+        >
           Cancel
         </DangerButton>
       </div>
-
-      <Transition
-        show={recentlySuccessful}
-        enter="transition ease-in-out"
-        enterFrom="opacity-0"
-        leave="transition ease-in-out"
-        leaveTo="opacity-0"
-      >
-        <p className="text-sm text-gray-600">Released.</p>
-      </Transition>
     </form>
   );
 }

@@ -74,6 +74,7 @@ export default function UpdateForm({ stock, onCancel }: Props) {
                 value="Add Stock:"
                 className="w-32 text-nowrap"
               />
+
               <TextInput
                 type="number"
                 id="add_stock"

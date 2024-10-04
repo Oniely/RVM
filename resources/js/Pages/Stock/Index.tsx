@@ -18,11 +18,7 @@ export default function Index({ stocks, histories }: Props) {
 
       <div className="flex items-center justify-around flex-wrap max-md:flex-col gap-6">
         {stocks.data.map((stock) => (
-          <StockSlot
-            key={stock.id}
-            stock={stock}
-            onConfirm={() => console.log('CONFIRMED')}
-          />
+          <StockSlot key={stock.id} stock={stock} />
         ))}
       </div>
 

@@ -81,6 +81,20 @@ class StockController extends Controller
         return back()->with('success', 'Update Successful');
     }
 
+    /*
+     * Release all stock
+     */
+    public function releaseStock($id)
+    {
+        $rice = Rice::findOrFail($id);
+
+        $rice->update([
+            'current_stock' => 0
+        ]);
+
+        return back()->with('success', 'Released');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

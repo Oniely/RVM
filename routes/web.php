@@ -21,6 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('stock', StockController::class);
     Route::resource('transactions', TransactionController::class);
+    Route::patch('/stock/{stock}/release', [StockController::class, 'releaseStock'])->name('stock.release');
 });
 
 Route::middleware('auth')->group(function () {

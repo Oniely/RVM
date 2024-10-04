@@ -8,10 +8,9 @@ import { Rice } from '@/types';
 
 interface Props {
   stock: Rice;
-  onConfirm: () => void;
 }
 
-export default function StockSlot({ stock, onConfirm }: Props) {
+export default function StockSlot({ stock }: Props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState<'update' | 'release' | null>(null);
 
@@ -76,11 +75,7 @@ export default function StockSlot({ stock, onConfirm }: Props) {
         )}
 
         {modalType === 'release' && (
-          <ConfirmRelease
-            stock={stock}
-            onConfirm={onConfirm}
-            onCancel={handleCloseModal}
-          />
+          <ConfirmRelease stock={stock} onCancel={handleCloseModal} />
         )}
       </Modal>
     </>
