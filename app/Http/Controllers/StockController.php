@@ -92,6 +92,13 @@ class StockController extends Controller
             'current_stock' => 0
         ]);
 
+        History::create([
+            'rice_id' => $rice->id,
+            'rice_name' => $rice->name,
+            'rice_variety' => $rice->variety,
+            'recent_activity' => 'RELEASED',
+        ]);
+
         return back()->with('success', 'Released');
     }
 
