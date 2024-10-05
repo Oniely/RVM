@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react';
+import { useForm, usePage } from '@inertiajs/react';
 import DangerButton from '../DangerButton';
 import InputError from '../InputError';
 import InputLabel from '../InputLabel';
@@ -60,6 +60,7 @@ export default function UpdateForm({ stock, onCancel }: Props) {
                 className="py-1 w-full"
                 value={data.variety}
                 onChange={(e) => setData('variety', e.target.value)}
+                isFocused
               />
             </div>
             <InputError
@@ -79,7 +80,11 @@ export default function UpdateForm({ stock, onCancel }: Props) {
                 id="add_stock"
                 className="py-1 w-full"
                 value={data.add_stock}
-                onChange={(e) => setData('add_stock', e.target.valueAsNumber)}
+                onChange={(e) =>
+                  !isNaN(e.target.valueAsNumber)
+                    ? setData('add_stock', e.target.valueAsNumber)
+                    : ''
+                }
               />
             </div>
             <InputError
