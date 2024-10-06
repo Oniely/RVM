@@ -33,7 +33,7 @@ export function formatTime(time: string) {
   return `${newHour}:${minute}${meridiem}`;
 }
 
-export function getPercentage(part: number, total: number = 10) {
+export function getPercentage(part: number, total: number = 20) {
   if (total === 0) {
     return 0;
   }

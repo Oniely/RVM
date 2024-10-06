@@ -10,7 +10,7 @@ export default function Slot({ stock }: Props) {
   const yellow = '#ffbd59';
   const red = '#ff2b2b';
 
-  const stockPercentage = getPercentage(stock.current_stock);
+  const stockPercentage = getPercentage(stock.current_stock, stock.full_stock);
 
   const level =
     stockPercentage >= 65 ? 'HIGH' : stockPercentage <= 30 ? 'LOW' : 'MEDIUM';

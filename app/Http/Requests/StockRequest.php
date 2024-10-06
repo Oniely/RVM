@@ -28,7 +28,7 @@ class StockRequest extends FormRequest
                 'required',
                 'integer',
                 'min:0',
-                'max:10',
+                'max:20',
                 function ($attribute, $value, $fail) {
                     $rice = Rice::findOrFail($this->route('stock'));
 
