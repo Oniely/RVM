@@ -29,7 +29,7 @@ class StockRequest extends FormRequest
                 'integer',
                 'min:0',
                 'max:20',
-                function ($attribute, $value, $fail) {
+                function ($attr, $value, $fail) {
                     $rice = Rice::findOrFail($this->route('stock'));
 
                     if ($rice->current_stock + $value > $rice->full_stock) {
