@@ -41,7 +41,6 @@ export default function Index({ stocks, histories }: Props) {
                     <th scope="col" className="px-6 py-3">
                       Slot
                     </th>
-                    <th scope="col" className="px-6 py-3" />
                   </tr>
                 </thead>
                 <tbody>
@@ -58,9 +57,6 @@ export default function Index({ stocks, histories }: Props) {
                       </td>
                       <td className="px-6 py-3">{history.recent_activity}</td>
                       <td className="px-6 py-3">{history.rice_variety}</td>
-                      <td className="px-6 py-3">
-                        <button>...</button>
-                      </td>
                     </tr>
                   ))}
                 </tbody>

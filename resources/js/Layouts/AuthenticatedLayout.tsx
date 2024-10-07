@@ -20,8 +20,15 @@ export default function AuthenticatedLayout({
             {header}
           </h2>
           <div className="gap-4 flexCenter">
-            <Link href='#' className="w-6 h-6 max-md:hidden">
-              <img src="/images/notification.svg" alt="notification" className='object-cover w-full h-full' />
+            <Link
+              href={route('notification')}
+              className="w-6 h-6 max-md:hidden"
+            >
+              <img
+                src="/images/notification.svg"
+                alt="notification"
+                className="object-cover w-full h-full"
+              />
             </Link>
             <div className="w-6 h-6 max-md:hidden">
               <SettingDropdown />
@@ -29,7 +36,7 @@ export default function AuthenticatedLayout({
           </div>
         </header>
 
-        <div className='py-12'>{children}</div>
+        <div className="py-12">{children}</div>
       </main>
     </div>
   );

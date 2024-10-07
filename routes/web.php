@@ -19,6 +19,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ]);
     })->name('dashboard');
 
+    Route::get('/notification', function () {
+        return Inertia::render('Notification');
+    })->name('notification');
+
     Route::resource('stock', StockController::class);
     Route::resource('transactions', TransactionController::class);
     Route::patch('/stock/{stock}/release', [StockController::class, 'releaseStock'])->name('stock.release');
